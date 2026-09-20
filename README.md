@@ -212,6 +212,7 @@ flowchart TD
 | `uv` | Environment and dependencies | Creates a repeatable environment from a committed lockfile |
 | pytest | Automated checks | Tests matching behavior without needing a camera |
 | Ruff | Formatting and linting | One lightweight tool for consistent Python code |
+| Zed | Code editor | Fast on Apple Silicon with a clean interface, integrated terminal, and Git support |
 
 I considered DeepFace because it can produce a result with very little code. I
 did not use it as the main implementation because it handles detection,
@@ -232,13 +233,13 @@ Do not copy accuracy numbers from a paper into this table.
 |---|---:|
 | Mac model | 2024 MacBook Pro, M4, 16 GB RAM |
 | Webcam resolution | 1280 x 720 requested |
-| Detection median | _run benchmark_ |
-| Embedding median | _run benchmark_ |
-| End-to-end median | _run benchmark_ |
-| End-to-end p95 | _run benchmark_ |
-| Pipeline FPS | _run benchmark_ |
-| Known test photos accepted | _record result_ |
-| Unknown test photos rejected | _record result_ |
+| Detection median | 4.75 ms |
+| Embedding median | 5.67 ms |
+| End-to-end median | 10.58 ms |
+| End-to-end p95 | 13.48 ms |
+| Pipeline FPS | 94.55 FPS |
+| Known test photos accepted | 1/1 |
+| Unknown test photos rejected | 1/1 |
 
 This is a small personal test, not a representative accuracy evaluation.
 
@@ -299,6 +300,7 @@ host rather than forced onto Apple Silicon macOS.
   biometric storage.
 - The project uses a personal sanity test rather than a large demographic
   evaluation.
+- Full-resolution phone photos were unreliable with the detector, so I resized the test images to 600 x 800 before enrollment and recognition.
 
 ## Model sources and licenses
 
@@ -306,4 +308,3 @@ host rather than forced onto Apple Silicon macOS.
 - [YuNet model and MIT license](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet)
 - [SFace model and Apache 2.0 license](https://github.com/opencv/opencv_zoo/tree/main/models/face_recognition_sface)
 - [InsightFace model licensing considered during selection](https://github.com/deepinsight/insightface/blob/master/python-package/docs/model_zoo.md)
-
