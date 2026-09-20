@@ -31,4 +31,3 @@ def cosine_similarity(left: ArrayLike, right: ArrayLike) -> float:
     if left_normalized.shape != right_normalized.shape:
         raise ValueError("Embeddings must have the same size")
     return float(np.dot(left_normalized, right_normalized))
-

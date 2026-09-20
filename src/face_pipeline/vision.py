@@ -81,4 +81,3 @@ class OpenCVFaceModels:
         aligned_face = self.recognizer.alignCrop(frame, detection.raw)
         feature = self.recognizer.feature(aligned_face)
         return normalize_embedding(feature)
-

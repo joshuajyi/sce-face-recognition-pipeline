@@ -75,10 +75,7 @@ def command_enroll(args: argparse.Namespace) -> int:
             key=lambda detection: detection.box[2] * detection.box[3],
         )
         if len(detections) > 1:
-            print(
-                f"warning: {image_path} contains {len(detections)} faces; "
-                "using the largest face"
-            )
+            print(f"warning: {image_path} contains {len(detections)} faces; using the largest face")
         embeddings.append(models.align_and_embed(image, selected))
         print(f"accepted {image_path}")
 
@@ -316,4 +313,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

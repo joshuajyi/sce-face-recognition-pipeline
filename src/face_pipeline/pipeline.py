@@ -56,21 +56,18 @@ class RecognitionPipeline:
         detections = self.models.detect(frame)
         after_detection = perf_counter()
 
-        embeddings = [
-            self.models.align_and_embed(frame, detection) for detection in detections
-        ]
+        embeddings = [self.models.align_and_embed(frame, detection) for detection in detections]
         after_embedding = perf_counter()
 
         matches = [
-            self.gallery.match(embedding, self.similarity_threshold)
-            for embedding in embeddings
+            self.gallery.match(embedding, self.similarity_threshold) for embedding in embeddings
         ]
         after_matching = perf_counter()
 
         return FrameAnalysis(
             faces=tuple(
                 FaceResult(detection=detection, match=match)
-                for detection, match in zip(detections, matches)
+                for detection, match in zip(detections, matches, strict=True)
             ),
             timings=Timings(
                 detection_ms=(after_detection - start) * 1000,
@@ -128,4 +125,3 @@ class RecognitionPipeline:
             cv.LINE_AA,
         )
         return output
-

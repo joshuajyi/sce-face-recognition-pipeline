@@ -11,8 +11,8 @@ build/
 models/*.onnx
 data/*
 !data/.gitkeep
+private_photos/
 
 # Generated demo and benchmark outputs
 outputs/*
 !outputs/.gitkeep
-

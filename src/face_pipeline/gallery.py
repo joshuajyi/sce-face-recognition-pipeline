@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
@@ -117,5 +117,6 @@ class Gallery:
 
         if names.ndim != 1 or embeddings.ndim != 2 or len(names) != len(embeddings):
             raise ValueError(f"Invalid gallery shape in: {path}")
-        return cls({str(name): embedding for name, embedding in zip(names, embeddings)})
-
+        return cls(
+            {str(name): embedding for name, embedding in zip(names, embeddings, strict=True)}
+        )
